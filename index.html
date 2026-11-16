@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rovtal | Çevrimdışı B2B Veri ve e-Fatura Otomasyonu</title>
+  <meta name="description" content="Rovtal, UBL-TR e-Fatura XML/ZIP arşivlerini harici buluta göndermeden yerel bilgisayarda denetleyen ve formüllü Excel raporları üreten B2B otomasyon araçları geliştirir.">
+  <meta name="color-scheme" content="light dark">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Rovtal | Çevrimdışı B2B Veri ve e-Fatura Otomasyonu">
+  <meta property="og:description" content="Veriyi dışarı göndermeden yerel ortamda çalışan UBL-TR e-Fatura denetimi, Excel birleştirme ve matrah/KDV mutabakat araçları.">
+  <meta property="og:url" content="https://rovtal.github.io/">
+  <link rel="icon" type="image/svg+xml" href="assets/rovtal-mark.svg">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-heading">Ana içeriğe geç</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#main-content">
+        <img class="brand-mark" src="assets/rovtal-mark.svg" alt="" width="28" height="28">
+        <span class="brand-name">Rovtal</span>
+      </a>
+
+      <nav class="primary-nav" aria-label="Birincil">
+        <ul>
+          <li><a href="#rapor-onizleme">Örnek Rapor</a></li>
+          <li><a href="#denetim-motoru">ubl-invoice-audit</a></li>
+          <li><a href="#calisma-modeli">Çalışma Modeli</a></li>
+          <li><a href="#iletisim">İletişim</a></li>
+        </ul>
+      </nav>
+
+      <button type="button" id="theme-toggle" class="btn btn-quiet theme-toggle" aria-pressed="false">
+        Koyu görünüm
+      </button>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="hero" aria-labelledby="main-heading">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <h1 id="main-heading" tabindex="-1">e-Fatura ve operasyon verisini dışarı çıkarmadan denetleyin.</h1>
+          <p class="lead">
+            Rovtal; GİB UBL-TR XML/ZIP fatura arşivlerini, KDV ve tevkifat mutabakatlarını ve çoklu Excel tablolarını
+            harici buluta yüklemeden doğrudan kendi bilgisayarınızda doğrulayan yerel B2B araçları üretir.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://github.com/Rovtal/ubl-invoice-audit" target="_blank" rel="noopener noreferrer">
+              ubl-invoice-audit GitHub Deposu
+            </a>
+            <a class="btn btn-secondary" href="#rapor-onizleme">
+              Canlı Rapor Önizlemesi
+            </a>
+          </div>
+          <p class="trust-line">
+            Sıfır belge başı kontör. %100 çevrimdışı Python çalıştırma. Açık kaynak çekirdek ve formüllü Excel çıktısı.
+          </p>
+        </div>
+
+        <aside id="rapor-onizleme" class="workbench" aria-labelledby="workbench-title">
+          <div class="workbench-header">
+            <div class="workbench-title-row">
+              <h2 id="workbench-title">Örnek Denetim Çıktısı (ubl-audit demo)</h2>
+              <span class="badge-count">6 belge · 0.05 TRY tolerans</span>
+            </div>
+            <div class="filter-bar" role="group" aria-label="Duruma göre filtrele">
+              <button type="button" class="filter-btn" data-filter="ALL" aria-pressed="true">Tümü (6)</button>
+              <button type="button" class="filter-btn" data-filter="GECTI" aria-pressed="false">Geçti (1)</button>
+              <button type="button" class="filter-btn" data-filter="UYARI" aria-pressed="false">Uyarı (2)</button>
+              <button type="button" class="filter-btn" data-filter="HATA" aria-pressed="false">Hata (3)</button>
+            </div>
+          </div>
+
+          <p id="filter-status" class="filter-status" aria-live="polite">
+            Gösterilen kayıt: 6 / 6 (iyiden kötüye sıralı). İncelemek için bir satıra tıklayın.
+          </p>
+
+          <div tabindex="0" role="region" aria-labelledby="workbench-title" class="table-wrapper workbench-table-wrap">
+            <table class="audit-table">
+              <caption class="visually-hidden">Örnek 6 UBL-TR faturasının denetim sonuçları, iyiden kötüye sıralı</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Fatura No</th>
+                  <th scope="col">Satıcı</th>
+                  <th scope="col" class="num">Ödenecek</th>
+                  <th scope="col">Durum</th>
+                </tr>
+              </thead>
+              <tbody id="audit-rows">
+                <tr class="audit-row is-selected" data-status="GECTI" data-invoice="RVT2026000000000">
+                  <th scope="row">
+                    <button type="button" class="row-trigger" aria-pressed="true" data-invoice="RVT2026000000000">
+                      <code>RVT2026000000000</code>
+                    </button>
+                  </th>
+                  <td>Marmara Teknoloji Danışmanlık A.Ş.</td>
+                  <td class="num">1.800,00 TRY</td>
+                  <td><span class="status-pill status-pass">● Geçti</span></td>
+                </tr>
+                <tr class="audit-row" data-status="UYARI" data-invoice="SHS2026000000002">
+                  <th scope="row">
+                    <button type="button" class="row-trigger" aria-pressed="false" data-invoice="SHS2026000000002">
+                      <code>SHS2026000000002</code>
+                    </button>
+                  </th>
+                  <td>Deniz Demir (TCKN)</td>
+                  <td class="num">2.200,00 TRY</td>
+                  <td><span class="status-pill status-warn">▲ Uyarı</span></td>
+                </tr>
+                <tr class="audit-row" data-status="UYARI" data-invoice="SHS2026000000009">
+                  <th scope="row">
+                    <button type="button" class="row-trigger" aria-pressed="false" data-invoice="SHS2026000000009">
+                      <code>SHS2026000000009</code>
+                    </button>
+                  </th>
+                  <td>Deniz Demir (TCKN)</td>
+                  <td class="num">2.200,00 TRY</td>
+                  <td><span class="status-pill status-warn">▲ Uyarı</span></td>
+                </tr>
+                <tr class="audit-row" data-status="HATA" data-invoice="ERR2026000000003">
+                  <th scope="row">
+                    <button type="button" class="row-trigger" aria-pressed="false" data-invoice="ERR2026000000003">
+                      <code>ERR2026000000003</code>
+                    </button>
+                  </th>
+                  <td>Bozuk Hesap Lojistik Ltd. Şti.</td>
+                  <td class="num">1.150,00 TRY</td>
+                  <td><span class="status-pill status-err">■ Hata</span></td>
+                </tr>
+                <tr class="audit-row" data-status="HATA" data-invoice="RVT2026000000001">
+                  <th scope="row">
+                    <button type="button" class="row-trigger" aria-pressed="false" data-invoice="RVT2026000000001">
+                      <code>RVT2026000000001</code>
+                    </button>
+                  </th>
+                  <td>Anadolu Tedarik Ticaret A.Ş.</td>
+                  <td class="num">1.200,00 TRY</td>
+                  <td><span class="status-pill status-err">■ Hata</span></td>
+                </tr>
+                <tr class="audit-row" data-status="HATA" data-invoice="RVT2026000000004">
+                  <th scope="row">
+                    <button type="button" class="row-trigger" aria-pressed="false" data-invoice="RVT2026000000004">
+                      <code>RVT2026000000004</code>
+                    </button>
+                  </th>
+                  <td>Anadolu Tedarik Ticaret A.Ş.</td>
+                  <td class="num">600,00 TRY</td>
+                  <td><span class="status-pill status-err">■ Hata</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="inspector" aria-live="polite">
+            <div class="inspector-top">
+              <strong id="ins-title">RVT2026000000000 — Mutabakat Tamam</strong>
+              <span id="ins-code" class="inspector-code">KURAL_TAMAM</span>
+            </div>
+            <p id="ins-msg" class="inspector-msg">
+              Satır matrahı (1.500,00), %20 KDV (300,00) ve ödenecek toplam (1.800,00) 0,05 TRY toleransı içinde birebir doğrulandı.
+            </p>
+            <dl class="inspector-meta">
+              <div>
+                <dt>Kaynak</dt>
+                <dd id="ins-source">RVT2026000000000.xml</dd>
+              </div>
+              <div>
+                <dt>Beklenen / Gerçek</dt>
+                <dd id="ins-values">1.800,00 TRY / 1.800,00 TRY</dd>
+              </div>
+            </dl>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="denetim-motoru" class="section" aria-labelledby="engine-heading">
+      <div class="container split-band">
+        <div class="prose-col">
+          <h2 id="engine-heading">ubl-invoice-audit v0.1.0</h2>
+          <p>
+            GİB ve özel entegratör arşivlerinden çıkan iç içe <code>.zip</code> ve <code>.xml</code> faturalarını bellekte ayrıştıran,
+            dış varlık enjeksiyonuna (<code>XXE</code>) ve arşiv yol taşmasına (<code>zip-slip</code>) karşı kilitli açık kaynak denetim çekirdeği.
+          </p>
+          <ul class="spec-bullets">
+            <li>Kayan nokta yuvarlama sapması olmadan tam <code>Decimal</code> satır, çoklu KDV oranı ve <code>WithholdingTaxTotal</code> tevkifat kontrolü</li>
+            <li>Aynı <code>ETTN (UUID)</code>, aynı satıcıda tekrar eden fatura numarası ve aynı satıcı + tarih + tutarlı olası çift kayıt yakalama</li>
+            <li>Hem <code>PartyName (VKN)</code> kurumsal şirketleri hem <code>Person (TCKN)</code> şahıs firmalarını okuma</li>
+            <li>Otomasyon boru hatları için hatalı partide çıkış kodu <code>2</code> döndüren <code>--fail-on-error</code> bayrağı ve JSON özet</li>
+          </ul>
+
+          <div class="cli-box" aria-label="Komut satırı kullanımı">
+            <pre><code id="cli-command">ubl-audit audit .\faturalar .\arsiv.zip -o .\denetim_raporu.xlsx --fail-on-error</code></pre>
+            <button type="button" id="copy-cli-btn" class="btn btn-secondary btn-small">Kopyala</button>
+          </div>
+          <p id="copy-feedback" class="copy-feedback" aria-live="polite"></p>
+        </div>
+
+        <div class="table-col">
+          <div tabindex="0" role="region" aria-labelledby="workbook-caption" class="table-wrapper">
+            <table class="spec-table">
+              <caption id="workbook-caption">5 Sayfalı Excel (.xlsx) Çıktı Mimarisi</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Sayfa Adı</th>
+                  <th scope="col">İçerik ve Hesaplama</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row"><code>Ozet_Denetim</code></th>
+                  <td>Canlı <code>COUNTIF</code> / <code>SUM</code> Excel formülleri, durum dağılımı ve KDV oran özeti</td>
+                </tr>
+                <tr>
+                  <th scope="row"><code>Faturalar</code></th>
+                  <td>Tüm belgelerin ETTN, VKN/TCKN, matrah, KDV, tevkifat, ödenecek ve denetim durumu</td>
+                </tr>
+                <tr>
+                  <th scope="row"><code>Uyari_ve_Mukerrer</code></th>
+                  <td>Yakalanan matematik sapmaları, çift ETTN kayıtları ve olası mükerrer eşleşmeler</td>
+                </tr>
+                <tr>
+                  <th scope="row"><code>KDV_Kirilim</code></th>
+                  <td>Oran bazlı KDV ve tevkifat kod kırılımları</td>
+                </tr>
+                <tr>
+                  <th scope="row"><code>Kalem_Detay</code></th>
+                  <td>Fatura satırı bazında miktar, birim fiyat ve satır net tutar dökümü</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="calisma-modeli" class="section section-alt" aria-labelledby="model-heading">
+      <div class="container">
+        <h2 id="model-heading">Çalışma Modeli ve Kapsam</h2>
+        <p class="section-intro">
+          Hazır SaaS aboneliklerinin aksine, mevcut muhasebe veya ofis Excel düzeninize birebir uyan tek seferlik yerel araçlar kurulur.
+        </p>
+
+        <dl class="ledger-list">
+          <div class="ledger-row">
+            <dt>Önce Hazırla, Sonra Göster</dt>
+            <dd>
+              Anonimleştirilmiş 3–5 örnek faturanız veya Excel şablonunuz üzerinden çalışan araç yerel ortamda hazırlanır.
+              Beklenen çıktıyı canlı görüp doğruladıktan sonra teslim edilir.
+            </dd>
+          </div>
+          <div class="ledger-row">
+            <dt>Tam Yerel Veri Güvenliği</dt>
+            <dd>
+              Hiçbir XML faturası, cari hesap listesi veya banka ekstresi üçüncü parti web servislerine yüklenmez;
+              tüm ayrıştırma ve doğrulama Windows masaüstünde yerel Python ikilisiyle yürür.
+            </dd>
+          </div>
+          <div class="ledger-row">
+            <dt>Çıktı Formatı</dt>
+            <dd>
+              Son kullanıcıya ham kod veya JSON bırakılmaz; doğrudan Logo, Zirve veya şirket içi kontrol şablonuna uygun,
+              formüllü ve filtreli Excel (<code>.xlsx</code>) dosyası üretilir.
+            </dd>
+          </div>
+          <div class="ledger-row">
+            <dt>Kurulan Başlıca Akışlar</dt>
+            <dd>
+              GİB UBL-TR e-Fatura/e-Arşiv XML-ZIP mutabakatı, çoklu dağınık Excel/CSV birleştirme ve mükerrer kayıt temizleme,
+              matrah/KDV/tevkifat ön kontrol otomasyonları.
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+  </main>
+
+  <footer id="iletisim" class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <div class="footer-lockup">
+          <img src="assets/rovtal-mark.svg" alt="" width="24" height="24">
+          <span>Rovtal</span>
+        </div>
+        <p>Çevrimdışı B2B veri doğrulama, e-Fatura denetimi ve yerel Excel otomasyon araçları.</p>
+      </div>
+
+      <div class="footer-contact">
+        <h3>Doğrudan İletişim</h3>
+        <div class="contact-actions">
+          <a class="email-link" href="mailto:rovtalai@gmail.com">rovtalai@gmail.com</a>
+          <button type="button" id="copy-email-btn" class="btn btn-quiet btn-small">Adresi kopyala</button>
+        </div>
+        <p id="email-feedback" class="copy-feedback" aria-live="polite"></p>
+      </div>
+
+      <div class="footer-links">
+        <h3>Doğrulanmış Kanallar</h3>
+        <ul>
+          <li><a href="https://github.com/Rovtal" target="_blank" rel="noopener noreferrer">GitHub (@Rovtal)</a></li>
+          <li><a href="https://x.com/RovtalAI" target="_blank" rel="noopener noreferrer">X (@RovtalAI)</a></li>
+          <li><a href="https://www.youtube.com/@rovtalai" target="_blank" rel="noopener noreferrer">YouTube (@rovtalai)</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
