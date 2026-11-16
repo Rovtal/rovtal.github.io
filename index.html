@@ -28,6 +28,7 @@
         <ul>
           <li><a href="#odak-alanlari">Odak Alanları</a></li>
           <li><a href="#denetim-motoru">ubl-invoice-audit</a></li>
+          <li><a href="#birlestirme-motoru">excel-merge-audit</a></li>
           <li><a href="#calisma-modeli">Çalışma Modeli</a></li>
           <li><a href="#iletisim">İletişim</a></li>
         </ul>
@@ -215,7 +216,9 @@
               <li>İleri Excel formülleri, pivot ve dinamik özet sayfalarıyla denetime hazır rapor teslimi</li>
             </ul>
             <p class="track-links">
-              <a href="https://github.com/Rovtal/ubl-invoice-audit" target="_blank" rel="noopener noreferrer">ubl-invoice-audit Kaynak Kodu</a>
+              <a href="https://github.com/Rovtal/ubl-invoice-audit" target="_blank" rel="noopener noreferrer">ubl-invoice-audit</a>
+              ·
+              <a href="https://github.com/Rovtal/excel-merge-audit" target="_blank" rel="noopener noreferrer">excel-merge-audit</a>
               ·
               <a href="#iletisim">Proje ve İş Görüşmesi</a>
             </p>
@@ -227,7 +230,7 @@
     <section id="denetim-motoru" class="section" aria-labelledby="engine-heading">
       <div class="container split-band">
         <div class="prose-col">
-          <h2 id="engine-heading">İlk Yayınlanan Araç: ubl-invoice-audit v0.1.0</h2>
+          <h2 id="engine-heading">Araç #1: ubl-invoice-audit v0.1.0</h2>
           <p>
             GİB ve özel entegratör arşivlerinden çıkan iç içe <code>.zip</code> ve <code>.xml</code> faturalarını bellekte ayrıştıran,
             dış varlık enjeksiyonuna (<code>XXE</code>) ve arşiv yol taşmasına (<code>zip-slip</code>) karşı kilitli açık kaynak denetim çekirdeği.
@@ -239,11 +242,14 @@
             <li>Otomasyon boru hatları için hatalı partide çıkış kodu <code>2</code> döndüren <code>--fail-on-error</code> bayrağı ve JSON özet</li>
           </ul>
 
-          <div class="cli-box" aria-label="Komut satırı kullanımı">
+          <div class="cli-box" aria-label="ubl-invoice-audit komut satırı kullanımı">
             <pre><code id="cli-command">ubl-audit audit .\faturalar .\arsiv.zip -o .\denetim_raporu.xlsx --fail-on-error</code></pre>
             <button type="button" id="copy-cli-btn" class="btn btn-secondary btn-small">Kopyala</button>
           </div>
           <p id="copy-feedback" class="copy-feedback" aria-live="polite"></p>
+          <p class="track-links">
+            <a href="https://github.com/Rovtal/ubl-invoice-audit" target="_blank" rel="noopener noreferrer">GitHub: ubl-invoice-audit</a>
+          </p>
         </div>
 
         <div class="table-col">
@@ -284,7 +290,66 @@
       </div>
     </section>
 
-    <section id="calisma-modeli" class="section section-alt" aria-labelledby="model-heading">
+    <section id="birlestirme-motoru" class="section section-alt" aria-labelledby="merge-heading">
+      <div class="container split-band">
+        <div class="prose-col">
+          <h2 id="merge-heading">Araç #2: excel-merge-audit v0.1.0</h2>
+          <p>
+            Farklı formatlardaki çoklu <code>.xlsx</code>, <code>.csv</code> ve <code>.tsv</code> tablolarını <code>openpyxl</code> veya <code>pandas</code>
+            gerektirmeden çevrimdışı birleştiren, sütun eşleyen ve kuruş mutabakatını denetleyen açık kaynak araç.
+          </p>
+          <ul class="spec-bullets">
+            <li><code>UTF-8</code>, <code>cp1254</code> (Türkçe ANSI) ve <code>ISO-8859-9</code> kodlamalarıyla <code>;</code> / <code>,</code> / <code>TAB</code> ayırıcılarını otomatik algılama</li>
+            <li>Üstteki şirket/başlık satırlarını atlama, atlanmış boş OpenXML hücrelerinde kaymayı önleme ve Excel seri tarihlerini <code>YYYY-MM-DD</code> yapma</li>
+            <li>Birebir mükerrer satırların yanı sıra aynı belge no + tarafla farklı tutarda gelen çakışan kayıtları ve <code>GENEL TOPLAM</code> tekrarlarını ayıklama</li>
+            <li><code>XXE</code>, <code>zip-slip</code> ve Excel hücre formül enjeksiyonuna (<code>CWE-1236</code>) karşı güvenli metin koruma katmanı</li>
+          </ul>
+
+          <div class="cli-box" aria-label="excel-merge-audit komut satırı kullanımı">
+            <pre><code id="merge-cli-command">excel-merge merge .\dosyalar -o .\birlesik_rapor.xlsx --json .\ozet.json --fail-on-error</code></pre>
+            <button type="button" id="copy-merge-cli-btn" class="btn btn-secondary btn-small">Kopyala</button>
+          </div>
+          <p id="copy-merge-feedback" class="copy-feedback" aria-live="polite"></p>
+          <p class="track-links">
+            <a href="https://github.com/Rovtal/excel-merge-audit" target="_blank" rel="noopener noreferrer">GitHub: excel-merge-audit</a>
+          </p>
+        </div>
+
+        <div class="table-col">
+          <div tabindex="0" role="region" aria-labelledby="merge-workbook-caption" class="table-wrapper">
+            <table class="spec-table">
+              <caption id="merge-workbook-caption">4 Sayfalı Mutabakat (.xlsx) Çıktı Mimarisi</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Sayfa Adı</th>
+                  <th scope="col">İçerik ve Doğrulama</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row"><code>Ozet_Birlestirme</code></th>
+                  <td>Dinamik <code>COUNTIF</code> / <code>SUM</code> formülleri ve Ham − Mükerrer − Temiz sıfır sapma kontrolü</td>
+                </tr>
+                <tr>
+                  <th scope="row"><code>Temiz_Birlestirilmis</code></th>
+                  <td>Hizalanmış tarih, belge no, VKN/taraf, Net/KDV/Brüt tutar ve satır bazlı denetim durumu</td>
+                </tr>
+                <tr>
+                  <th scope="row"><code>Kaynak_Dosyalar</code></th>
+                  <td>Her dosyanın algılanan kodlaması, ayırıcısı, başlık satırı ve brüt toplam katkısı</td>
+                </tr>
+                <tr>
+                  <th scope="row"><code>Mukerrer_ve_Uyarilar</code></th>
+                  <td>Çıkarılan mükerrerler, çakışan belgeler, bilimsel VKN bozulmaları ve formül hata hücreleri</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="calisma-modeli" class="section" aria-labelledby="model-heading">
       <div class="container">
         <h2 id="model-heading">Çalışma Modeli ve Teslim İlkeleri</h2>
         <p class="section-intro">

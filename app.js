@@ -194,6 +194,12 @@
     "Komut panoya kopyalandı."
   );
   setupCopyButton(
+    "copy-merge-cli-btn",
+    () => (document.getElementById("merge-cli-command")?.textContent || "").trim(),
+    "copy-merge-feedback",
+    "Komut panoya kopyalandı."
+  );
+  setupCopyButton(
     "copy-email-btn",
     () => "rovtalai@gmail.com",
     "email-feedback",
