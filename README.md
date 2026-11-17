@@ -1,13 +1,13 @@
 # rovtal.github.io
 
-Rovtal resmi web vitrini (`https://rovtal.github.io`): yapay zeka ajanları, yerel otomasyon sistemleri ve çevrimdışı ofis/ön muhasebe veri araçları.
+Rovtal official bilingual (`EN / TR`) showcase (`https://rovtal.github.io`): open-source AI agent systems, local developer automation tooling, and offline office/accounting data utilities.
 
-## Kapsam
-- %100 statik HTML, CSS ve vanilla JavaScript (harici çerçeve veya çalışma zamanı bağımlılığı yok).
-- Yerel Türkçe destekli self-hosted yazı tipleri (`assets/fonts/`).
-- `ubl-invoice-audit` örnek veri çıktısı üzerinde etkileşimli filtreleme ve bulgu inceleme önizlemesi.
+## Scope
+- 100% static HTML, CSS, and vanilla JavaScript (zero external frameworks or runtime dependencies).
+- Instant `EN / TR` language switching (`?lang=en` / `?lang=tr`, `localStorage`, and browser locale detection) with full English and Turkish self-hosted fonts (`assets/fonts/`).
+- Interactive `ubl-invoice-audit` demo preview plus `excel-merge-audit` documentation and CLI snippets.
 
-## Yerel Önizleme
+## Local Preview
 
 ```powershell
 python -m http.server 8765

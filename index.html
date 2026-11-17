@@ -1,21 +1,24 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Rovtal | Yapay Zeka Ajanları ve Yerel İş Otomasyonu</title>
-  <meta name="description" content="Rovtal; yapay zeka ajanları, yerel otomasyon sistemleri ile ön muhasebe, Excel ve GİB UBL-TR e-Fatura doğrulama süreçleri için çevrimdışı çalışan pratik araçlar geliştirir.">
+  <title>Rovtal | AI Agents &amp; Offline Local Work Automation</title>
+  <meta name="description" content="Rovtal builds open-source AI agent workflows, local automation tooling, and offline verification utilities for Excel, CSV, and UBL-TR e-invoice auditing.">
   <meta name="color-scheme" content="light dark">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Rovtal | Yapay Zeka Ajanları ve Yerel İş Otomasyonu">
-  <meta property="og:description" content="Yapay zeka destekli yerel otomasyon sistemleri, açık kaynak araçlar ve çevrimdışı Excel / UBL-TR e-Fatura denetim akışları.">
+  <meta property="og:title" content="Rovtal | AI Agents &amp; Offline Local Work Automation">
+  <meta property="og:description" content="Open-source local automation tools and offline Excel / CSV / UBL-TR e-invoice reconciliation pipelines.">
   <meta property="og:url" content="https://rovtal.github.io/">
+  <link rel="alternate" hreflang="en" href="https://rovtal.github.io/?lang=en">
+  <link rel="alternate" hreflang="tr" href="https://rovtal.github.io/?lang=tr">
+  <link rel="alternate" hreflang="x-default" href="https://rovtal.github.io/">
   <link rel="icon" type="image/svg+xml" href="assets/rovtal-mark.svg">
   <link rel="stylesheet" href="styles.css">
   <script src="app.js" defer></script>
 </head>
 <body>
-  <a class="skip-link" href="#main-heading">Ana içeriğe geç</a>
+  <a class="skip-link" href="#main-heading" data-i18n="skip_link">Skip to main content</a>
 
   <header class="site-header">
     <div class="container header-inner">
@@ -24,19 +27,26 @@
         <span class="brand-name">Rovtal</span>
       </a>
 
-      <nav class="primary-nav" aria-label="Birincil">
+      <nav class="primary-nav" id="primary-nav" aria-label="Primary">
         <ul>
-          <li><a href="#odak-alanlari">Odak Alanları</a></li>
+          <li><a href="#odak-alanlari" data-i18n="nav_tracks">Workstreams</a></li>
           <li><a href="#denetim-motoru">ubl-invoice-audit</a></li>
           <li><a href="#birlestirme-motoru">excel-merge-audit</a></li>
-          <li><a href="#calisma-modeli">Çalışma Modeli</a></li>
-          <li><a href="#iletisim">İletişim</a></li>
+          <li><a href="#calisma-modeli" data-i18n="nav_workflow">Workflow</a></li>
+          <li><a href="#iletisim" data-i18n="nav_contact">Contact</a></li>
         </ul>
       </nav>
 
-      <button type="button" id="theme-toggle" class="btn btn-quiet theme-toggle" aria-pressed="false">
-        Koyu görünüm
-      </button>
+      <div class="header-controls">
+        <div class="lang-switch" id="lang-switch" role="group" aria-label="Language">
+          <button type="button" class="lang-btn" data-lang="tr" aria-pressed="false">TR</button>
+          <button type="button" class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
+        </div>
+
+        <button type="button" id="theme-toggle" class="btn btn-quiet btn-small theme-toggle" aria-pressed="false">
+          Dark mode
+        </button>
+      </div>
     </div>
   </header>
 
@@ -44,11 +54,11 @@
     <section class="hero" aria-labelledby="main-heading">
       <div class="container hero-grid">
         <div class="hero-copy">
-          <h1 id="main-heading" tabindex="-1">Yapay zeka ajanları ve sıfır hatalı yerel iş otomasyonu.</h1>
-          <p class="lead">
-            Rovtal; yapay zeka ajan sistemleri ve açık kaynak geliştirici araçları üreten bir teknoloji kanalıdır.
-            Aynı zamanda ofis, ön muhasebe ve veri operasyonlarındaki tekrarlayan e-Fatura ile Excel işlerini
-            internetsiz çalışan yerel araçlara dönüştürür.
+          <h1 id="main-heading" tabindex="-1" data-i18n="hero_heading">AI agents and zero-error local work automation.</h1>
+          <p class="lead" data-i18n="hero_lead">
+            Rovtal builds open-source AI agent systems and local developer utilities.
+            It turns repetitive spreadsheet consolidation, accounting verification, and e-invoice checks
+            into offline desktop tools with zero cloud dependency.
           </p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="https://github.com/Rovtal" target="_blank" rel="noopener noreferrer">
@@ -58,38 +68,38 @@
               YouTube (@RovtalAI)
             </a>
           </div>
-          <p class="trust-line">
-            Açık kaynak Python çekirdekleri · Çevrimdışı Excel ve UBL-TR mutabakatı · Sıfır bulut ve sıfır kontör maliyeti.
+          <p class="trust-line" data-i18n="hero_trust">
+            Open-source Python cores · Offline Excel and UBL-TR reconciliation · Zero cloud upload and zero token cost.
           </p>
         </div>
 
         <aside id="rapor-onizleme" class="workbench" aria-labelledby="workbench-title">
           <div class="workbench-header">
             <div class="workbench-title-row">
-              <h2 id="workbench-title">Canlı Çıktı: ubl-audit demo</h2>
-              <span class="badge-count">6 belge · 0.05 TRY tolerans</span>
+              <h2 id="workbench-title" data-i18n="wb_title">Live Output: ubl-audit demo</h2>
+              <span class="badge-count" data-i18n="wb_badge">6 docs · 0.05 TRY tolerance</span>
             </div>
-            <div class="filter-bar" role="group" aria-label="Duruma göre filtrele">
-              <button type="button" class="filter-btn" data-filter="ALL" aria-pressed="true">Tümü (6)</button>
-              <button type="button" class="filter-btn" data-filter="GECTI" aria-pressed="false">Geçti (1)</button>
-              <button type="button" class="filter-btn" data-filter="UYARI" aria-pressed="false">Uyarı (2)</button>
-              <button type="button" class="filter-btn" data-filter="HATA" aria-pressed="false">Hata (3)</button>
+            <div class="filter-bar" id="filter-bar" role="group" aria-label="Filter by status">
+              <button type="button" class="filter-btn" data-filter="ALL" aria-pressed="true" data-i18n="filter_all">All (6)</button>
+              <button type="button" class="filter-btn" data-filter="GECTI" aria-pressed="false" data-i18n="filter_pass">Passed (1)</button>
+              <button type="button" class="filter-btn" data-filter="UYARI" aria-pressed="false" data-i18n="filter_warn">Warning (2)</button>
+              <button type="button" class="filter-btn" data-filter="HATA" aria-pressed="false" data-i18n="filter_err">Error (3)</button>
             </div>
           </div>
 
           <p id="filter-status" class="filter-status" aria-live="polite">
-            Gösterilen kayıt: 6 / 6 (iyiden kötüye sıralı). İncelemek için bir satıra tıklayın.
+            Showing 6 of 6 records (sorted best to worst). Select a row to inspect.
           </p>
 
           <div tabindex="0" role="region" aria-labelledby="workbench-title" class="table-wrapper workbench-table-wrap">
             <table class="audit-table">
-              <caption class="visually-hidden">Örnek 6 UBL-TR faturasının denetim sonuçları, iyiden kötüye sıralı</caption>
+              <caption class="visually-hidden" data-i18n="wb_caption">Sample audit results for 6 UBL-TR invoices, sorted best to worst</caption>
               <thead>
                 <tr>
-                  <th scope="col">Fatura No</th>
-                  <th scope="col">Satıcı</th>
-                  <th scope="col" class="num">Ödenecek</th>
-                  <th scope="col">Durum</th>
+                  <th scope="col" data-i18n="col_invoice">Invoice No</th>
+                  <th scope="col" data-i18n="col_supplier">Supplier</th>
+                  <th scope="col" class="num" data-i18n="col_payable">Payable</th>
+                  <th scope="col" data-i18n="col_status">Status</th>
                 </tr>
               </thead>
               <tbody id="audit-rows">
@@ -101,7 +111,7 @@
                   </th>
                   <td>Marmara Teknoloji Danışmanlık A.Ş.</td>
                   <td class="num">1.800,00 TRY</td>
-                  <td><span class="status-pill status-pass">● Geçti</span></td>
+                  <td><span class="status-pill status-pass" data-i18n="pill_pass">● Passed</span></td>
                 </tr>
                 <tr class="audit-row" data-status="UYARI" data-invoice="SHS2026000000002">
                   <th scope="row">
@@ -111,7 +121,7 @@
                   </th>
                   <td>Deniz Demir (TCKN)</td>
                   <td class="num">2.200,00 TRY</td>
-                  <td><span class="status-pill status-warn">▲ Uyarı</span></td>
+                  <td><span class="status-pill status-warn" data-i18n="pill_warn">▲ Warning</span></td>
                 </tr>
                 <tr class="audit-row" data-status="UYARI" data-invoice="SHS2026000000009">
                   <th scope="row">
@@ -121,7 +131,7 @@
                   </th>
                   <td>Deniz Demir (TCKN)</td>
                   <td class="num">2.200,00 TRY</td>
-                  <td><span class="status-pill status-warn">▲ Uyarı</span></td>
+                  <td><span class="status-pill status-warn" data-i18n="pill_warn">▲ Warning</span></td>
                 </tr>
                 <tr class="audit-row" data-status="HATA" data-invoice="ERR2026000000003">
                   <th scope="row">
@@ -131,7 +141,7 @@
                   </th>
                   <td>Bozuk Hesap Lojistik Ltd. Şti.</td>
                   <td class="num">1.150,00 TRY</td>
-                  <td><span class="status-pill status-err">■ Hata</span></td>
+                  <td><span class="status-pill status-err" data-i18n="pill_err">■ Error</span></td>
                 </tr>
                 <tr class="audit-row" data-status="HATA" data-invoice="RVT2026000000001">
                   <th scope="row">
@@ -141,7 +151,7 @@
                   </th>
                   <td>Anadolu Tedarik Ticaret A.Ş.</td>
                   <td class="num">1.200,00 TRY</td>
-                  <td><span class="status-pill status-err">■ Hata</span></td>
+                  <td><span class="status-pill status-err" data-i18n="pill_err">■ Error</span></td>
                 </tr>
                 <tr class="audit-row" data-status="HATA" data-invoice="RVT2026000000004">
                   <th scope="row">
@@ -151,7 +161,7 @@
                   </th>
                   <td>Anadolu Tedarik Ticaret A.Ş.</td>
                   <td class="num">600,00 TRY</td>
-                  <td><span class="status-pill status-err">■ Hata</span></td>
+                  <td><span class="status-pill status-err" data-i18n="pill_err">■ Error</span></td>
                 </tr>
               </tbody>
             </table>
@@ -159,19 +169,19 @@
 
           <div class="inspector" aria-live="polite">
             <div class="inspector-top">
-              <strong id="ins-title">RVT2026000000000 — Mutabakat Tamam</strong>
+              <strong id="ins-title">RVT2026000000000 — Reconciliation Passed</strong>
               <span id="ins-code" class="inspector-code">KURAL_TAMAM</span>
             </div>
             <p id="ins-msg" class="inspector-msg">
-              Satır matrahı (1.500,00), %20 KDV (300,00) ve ödenecek toplam (1.800,00) 0,05 TRY toleransı içinde birebir doğrulandı.
+              Line base (1,500.00), 20% VAT (300.00), and payable total (1,800.00) matched exactly within the 0.05 TRY tolerance.
             </p>
             <dl class="inspector-meta">
               <div>
-                <dt>Kaynak</dt>
+                <dt data-i18n="ins_dt_source">Source</dt>
                 <dd id="ins-source">RVT2026000000000.xml</dd>
               </div>
               <div>
-                <dt>Beklenen / Gerçek</dt>
+                <dt data-i18n="ins_dt_values">Expected / Actual</dt>
                 <dd id="ins-values">1.800,00 TRY / 1.800,00 TRY</dd>
               </div>
             </dl>
@@ -182,21 +192,21 @@
 
     <section id="odak-alanlari" class="section section-alt" aria-labelledby="pillars-heading">
       <div class="container">
-        <h2 id="pillars-heading">İki Çalışma Hattı: İçerik ve Gerçek İş Uygulamaları</h2>
-        <p class="section-intro">
-          Rovtal hem geliştiriciler için üretilen açık kaynak AI/otomasyon yayınlarını hem de ofis ve ön muhasebe pratiğindeki veri otomasyonu çözümlerini tek çatı altında birleştirir.
+        <h2 id="pillars-heading" data-i18n="pillars_heading">Two Workstreams: Open Engineering and Real Business Tools</h2>
+        <p class="section-intro" data-i18n="pillars_intro">
+          Rovtal unites public open-source AI/automation engineering with offline data utilities built for accounting and back-office operations.
         </p>
 
         <div class="tracks-grid">
           <article class="track-col" aria-labelledby="track-creator-heading">
-            <h3 id="track-creator-heading">Yapay Zeka Ajanları ve İçerik Üretimi</h3>
-            <p>
-              Kuramsal demo yerine doğrudan bilgisayarda çalışan ajan akışları, yerel komut satırı araçları ve abonelik maliyeti olmayan otomasyon mimarileri geliştirilir ve paylaşılır.
+            <h3 id="track-creator-heading" data-i18n="track1_heading">AI Agents and Open Tooling</h3>
+            <p data-i18n="track1_body">
+              Instead of abstract demos, Rovtal publishes reproducible agent workflows, local CLI utilities, and zero-subscription desktop automation architectures.
             </p>
             <ul class="spec-bullets">
-              <li>Ajan destekli kod ve otomasyon akışlarının gerçek dosya, test ve terminal doğrulamasıyla üretilmesi</li>
-              <li>Harici ücretli API yerine yerel Python ve masaüstü betikleriyle tekrarlı işlerin devralınması</li>
-              <li>Tüm kaynak kodların ve test kapsamlarının açık kaynak olarak paylaşılması</li>
+              <li data-i18n="track1_b1">Agent-assisted code and automation built against real file inputs, unit tests, and terminal verification</li>
+              <li data-i18n="track1_b2">Replacing recurring paid SaaS subscriptions with local Python and desktop automation pipelines</li>
+              <li data-i18n="track1_b3">Shipping open-source codebases alongside reproducible test suites and sample fixtures</li>
             </ul>
             <p class="track-links">
               <a href="https://www.youtube.com/@RovtalAI" target="_blank" rel="noopener noreferrer">YouTube (@RovtalAI)</a>
@@ -206,21 +216,21 @@
           </article>
 
           <article class="track-col" aria-labelledby="track-career-heading">
-            <h3 id="track-career-heading">Ofis, Ön Muhasebe ve Veri Otomasyonu</h3>
-            <p>
-              Günlük muhasebe, tedarik ve operasyon masalarında saat alan dağınık dosya birleştirme, matrah doğrulama ve fatura kontrol işleri hatasız Excel akışlarına bağlanır.
+            <h3 id="track-career-heading" data-i18n="track2_heading">Accounting, Office and Data Automation</h3>
+            <p data-i18n="track2_body">
+              Time-consuming spreadsheet consolidation, tax base cross-checks, and invoice audits are turned into deterministic offline Excel workflows.
             </p>
             <ul class="spec-bullets">
-              <li>GİB UBL-TR e-Fatura / e-Arşiv XML ve iç içe ZIP paketlerinden toplu veri çıkarımı ve kontrol</li>
-              <li>Çoklu Excel/CSV dosyalarını temizleme, çift kayıt yakalama ve Logo/Zirve/ofis şablonlarına uyarlama</li>
-              <li>İleri Excel formülleri, pivot ve dinamik özet sayfalarıyla denetime hazır rapor teslimi</li>
+              <li data-i18n="track2_b1">Bulk XML and nested ZIP parsing and mathematical auditing for Turkish UBL-TR e-Invoice / e-Archive schemas</li>
+              <li data-i18n="track2_b2">Cleaning multi-source Excel/CSV exports, catching conflicting duplicates, and mapping columns to ERP templates</li>
+              <li data-i18n="track2_b3">Delivering audit-ready workbooks with live Excel formulas, breakdowns, and strict edge-case flags</li>
             </ul>
             <p class="track-links">
               <a href="https://github.com/Rovtal/ubl-invoice-audit" target="_blank" rel="noopener noreferrer">ubl-invoice-audit</a>
               ·
               <a href="https://github.com/Rovtal/excel-merge-audit" target="_blank" rel="noopener noreferrer">excel-merge-audit</a>
               ·
-              <a href="#iletisim">Proje ve İş Görüşmesi</a>
+              <a href="#iletisim" data-i18n="track2_cta">Project Inquiries</a>
             </p>
           </article>
         </div>
@@ -230,21 +240,46 @@
     <section id="denetim-motoru" class="section" aria-labelledby="engine-heading">
       <div class="container split-band">
         <div class="prose-col">
-          <h2 id="engine-heading">Araç #1: ubl-invoice-audit v0.1.0</h2>
+          <h2 id="engine-heading" data-i18n="tool1_heading">Tool #1: ubl-invoice-audit v0.1.0</h2>
           <p>
-            GİB ve özel entegratör arşivlerinden çıkan iç içe <code>.zip</code> ve <code>.xml</code> faturalarını bellekte ayrıştıran,
-            dış varlık enjeksiyonuna (<code>XXE</code>) ve arşiv yol taşmasına (<code>zip-slip</code>) karşı kilitli açık kaynak denetim çekirdeği.
+            <span data-i18n="tool1_p1_a">An open-source in-memory auditing core for nested</span>
+            <code>.zip</code>
+            <span data-i18n="tool1_p1_b">and</span>
+            <code>.xml</code>
+            <span data-i18n="tool1_p1_c">UBL-TR invoice archives from Turkish Revenue Administration (GIB) portals, hardened against XML external entities (</span><code>XXE</code><span data-i18n="tool1_p1_d">) and path traversal (</span><code>zip-slip</code><span data-i18n="tool1_p1_e">).</span>
           </p>
           <ul class="spec-bullets">
-            <li>Kayan nokta yuvarlama sapması olmadan tam <code>Decimal</code> satır, çoklu KDV oranı ve <code>WithholdingTaxTotal</code> tevkifat kontrolü</li>
-            <li>Aynı <code>ETTN (UUID)</code>, aynı satıcıda tekrar eden fatura numarası ve aynı satıcı + tarih + tutarlı olası çift kayıt yakalama</li>
-            <li>Hem <code>PartyName (VKN)</code> kurumsal şirketleri hem <code>Person (TCKN)</code> şahıs firmalarını okuma</li>
-            <li>Otomasyon boru hatları için hatalı partide çıkış kodu <code>2</code> döndüren <code>--fail-on-error</code> bayrağı ve JSON özet</li>
+            <li>
+              <span data-i18n="tool1_b1_a">Exact</span>
+              <code>Decimal</code>
+              <span data-i18n="tool1_b1_b">line-total, multi-rate VAT, and</span>
+              <code>WithholdingTaxTotal</code>
+              <span data-i18n="tool1_b1_c">verification with zero floating-point rounding drift</span>
+            </li>
+            <li>
+              <span data-i18n="tool1_b2_a">Detects duplicate</span>
+              <code>ETTN (UUID)</code>
+              <span data-i18n="tool1_b2_b">records, repeated supplier invoice numbers, and same supplier + date + amount probable duplicates</span>
+            </li>
+            <li>
+              <span data-i18n="tool1_b3_a">Supports both corporate</span>
+              <code>PartyName (VKN)</code>
+              <span data-i18n="tool1_b3_b">entities and sole-proprietor</span>
+              <code>Person (TCKN)</code>
+              <span data-i18n="tool1_b3_c">schemas</span>
+            </li>
+            <li>
+              <span data-i18n="tool1_b4_a">Includes</span>
+              <code>--fail-on-error</code>
+              <span data-i18n="tool1_b4_b">flag returning exit code</span>
+              <code>2</code>
+              <span data-i18n="tool1_b4_c">plus JSON summary output for automated batch pipelines</span>
+            </li>
           </ul>
 
-          <div class="cli-box" aria-label="ubl-invoice-audit komut satırı kullanımı">
+          <div class="cli-box" id="cli-box-ubl" aria-label="ubl-invoice-audit command line usage">
             <pre><code id="cli-command">ubl-audit audit .\faturalar .\arsiv.zip -o .\denetim_raporu.xlsx --fail-on-error</code></pre>
-            <button type="button" id="copy-cli-btn" class="btn btn-secondary btn-small">Kopyala</button>
+            <button type="button" id="copy-cli-btn" class="btn btn-secondary btn-small" data-i18n="copy_btn">Copy</button>
           </div>
           <p id="copy-feedback" class="copy-feedback" aria-live="polite"></p>
           <p class="track-links">
@@ -255,33 +290,37 @@
         <div class="table-col">
           <div tabindex="0" role="region" aria-labelledby="workbook-caption" class="table-wrapper">
             <table class="spec-table">
-              <caption id="workbook-caption">5 Sayfalı Excel (.xlsx) Çıktı Mimarisi</caption>
+              <caption id="workbook-caption" data-i18n="tool1_caption">5-Sheet Excel (.xlsx) Output Architecture</caption>
               <thead>
                 <tr>
-                  <th scope="col">Sayfa Adı</th>
-                  <th scope="col">İçerik ve Hesaplama</th>
+                  <th scope="col" data-i18n="col_sheet">Sheet Name</th>
+                  <th scope="col" data-i18n="col_desc1">Contents and Calculations</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <th scope="row"><code>Ozet_Denetim</code></th>
-                  <td>Canlı <code>COUNTIF</code> / <code>SUM</code> Excel formülleri, durum dağılımı ve KDV oran özeti</td>
+                  <td>
+                    <span data-i18n="t1_r1_a">Live</span>
+                    <code>COUNTIF</code> / <code>SUM</code>
+                    <span data-i18n="t1_r1_b">Excel formulas, status breakdown, and VAT rate summary</span>
+                  </td>
                 </tr>
                 <tr>
                   <th scope="row"><code>Faturalar</code></th>
-                  <td>Tüm belgelerin ETTN, VKN/TCKN, matrah, KDV, tevkifat, ödenecek ve denetim durumu</td>
+                  <td data-i18n="t1_r2">Full invoice ledger with ETTN, tax ID, net base, VAT, withholding, payable total, and audit status</td>
                 </tr>
                 <tr>
                   <th scope="row"><code>Uyari_ve_Mukerrer</code></th>
-                  <td>Yakalanan matematik sapmaları, çift ETTN kayıtları ve olası mükerrer eşleşmeler</td>
+                  <td data-i18n="t1_r3">Detected arithmetic mismatches, duplicate ETTN records, and probable duplicate pairs</td>
                 </tr>
                 <tr>
                   <th scope="row"><code>KDV_Kirilim</code></th>
-                  <td>Oran bazlı KDV ve tevkifat kod kırılımları</td>
+                  <td data-i18n="t1_r4">Tax rate and withholding tax code breakdowns</td>
                 </tr>
                 <tr>
                   <th scope="row"><code>Kalem_Detay</code></th>
-                  <td>Fatura satırı bazında miktar, birim fiyat ve satır net tutar dökümü</td>
+                  <td data-i18n="t1_r5">Line-item quantities, unit prices, and net line amounts per invoice</td>
                 </tr>
               </tbody>
             </table>
@@ -293,21 +332,37 @@
     <section id="birlestirme-motoru" class="section section-alt" aria-labelledby="merge-heading">
       <div class="container split-band">
         <div class="prose-col">
-          <h2 id="merge-heading">Araç #2: excel-merge-audit v0.1.0</h2>
+          <h2 id="merge-heading" data-i18n="tool2_heading">Tool #2: excel-merge-audit v0.1.0</h2>
           <p>
-            Farklı formatlardaki çoklu <code>.xlsx</code>, <code>.csv</code> ve <code>.tsv</code> tablolarını <code>openpyxl</code> veya <code>pandas</code>
-            gerektirmeden çevrimdışı birleştiren, sütun eşleyen ve kuruş mutabakatını denetleyen açık kaynak araç.
+            <span data-i18n="tool2_p1_a">An open-source offline engine that consolidates heterogeneous</span>
+            <code>.xlsx</code>, <code>.csv</code>, <span data-i18n="tool2_p1_b">and</span> <code>.tsv</code>
+            <span data-i18n="tool2_p1_c">tables without requiring</span>
+            <code>openpyxl</code> <span data-i18n="tool2_p1_d">or</span> <code>pandas</code><span data-i18n="tool2_p1_e">, aligning bilingual column schemas and auditing decimal totals.</span>
           </p>
           <ul class="spec-bullets">
-            <li><code>UTF-8</code>, <code>cp1254</code> (Türkçe ANSI) ve <code>ISO-8859-9</code> kodlamalarıyla <code>;</code> / <code>,</code> / <code>TAB</code> ayırıcılarını otomatik algılama</li>
-            <li>Üstteki şirket/başlık satırlarını atlama, atlanmış boş OpenXML hücrelerinde kaymayı önleme ve Excel seri tarihlerini <code>YYYY-MM-DD</code> yapma</li>
-            <li>Birebir mükerrer satırların yanı sıra aynı belge no + tarafla farklı tutarda gelen çakışan kayıtları ve <code>GENEL TOPLAM</code> tekrarlarını ayıklama</li>
-            <li><code>XXE</code>, <code>zip-slip</code> ve Excel hücre formül enjeksiyonuna (<code>CWE-1236</code>) karşı güvenli metin koruma katmanı</li>
+            <li>
+              <span data-i18n="tool2_b1_a">Auto-detects</span>
+              <code>UTF-8</code>, <code>cp1254</code> <span data-i18n="tool2_b1_b">(Windows-1254), and</span> <code>ISO-8859-9</code>
+              <span data-i18n="tool2_b1_c">encodings with</span>
+              <code>;</code> / <code>,</code> / <code>TAB</code> <span data-i18n="tool2_b1_d">delimiters</span>
+            </li>
+            <li>
+              <span data-i18n="tool2_b2_a">Skips top report banner rows, prevents sparse OpenXML empty-cell column shifting, and normalizes Excel serial dates to</span>
+              <code>YYYY-MM-DD</code>
+            </li>
+            <li>
+              <span data-i18n="tool2_b3_a">Separates exact duplicates, flags conflicting same-document rows with different amounts, and strips repeated</span>
+              <code>GENEL TOPLAM</code> <span data-i18n="tool2_b3_b">summary rows</span>
+            </li>
+            <li>
+              <span data-i18n="tool2_b4_a">Hardened against</span>
+              <code>XXE</code>, <code>zip-slip</code><span data-i18n="tool2_b4_b">, and spreadsheet formula injection (</span><code>CWE-1236</code><span data-i18n="tool2_b4_c">)</span>
+            </li>
           </ul>
 
-          <div class="cli-box" aria-label="excel-merge-audit komut satırı kullanımı">
+          <div class="cli-box" id="cli-box-merge" aria-label="excel-merge-audit command line usage">
             <pre><code id="merge-cli-command">excel-merge merge .\dosyalar -o .\birlesik_rapor.xlsx --json .\ozet.json --fail-on-error</code></pre>
-            <button type="button" id="copy-merge-cli-btn" class="btn btn-secondary btn-small">Kopyala</button>
+            <button type="button" id="copy-merge-cli-btn" class="btn btn-secondary btn-small" data-i18n="copy_btn">Copy</button>
           </div>
           <p id="copy-merge-feedback" class="copy-feedback" aria-live="polite"></p>
           <p class="track-links">
@@ -318,29 +373,33 @@
         <div class="table-col">
           <div tabindex="0" role="region" aria-labelledby="merge-workbook-caption" class="table-wrapper">
             <table class="spec-table">
-              <caption id="merge-workbook-caption">4 Sayfalı Mutabakat (.xlsx) Çıktı Mimarisi</caption>
+              <caption id="merge-workbook-caption" data-i18n="tool2_caption">4-Sheet Reconciliation (.xlsx) Output Architecture</caption>
               <thead>
                 <tr>
-                  <th scope="col">Sayfa Adı</th>
-                  <th scope="col">İçerik ve Doğrulama</th>
+                  <th scope="col" data-i18n="col_sheet">Sheet Name</th>
+                  <th scope="col" data-i18n="col_desc2">Contents and Verification</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <th scope="row"><code>Ozet_Birlestirme</code></th>
-                  <td>Dinamik <code>COUNTIF</code> / <code>SUM</code> formülleri ve Ham − Mükerrer − Temiz sıfır sapma kontrolü</td>
+                  <td>
+                    <span data-i18n="t2_r1_a">Dynamic</span>
+                    <code>COUNTIF</code> / <code>SUM</code>
+                    <span data-i18n="t2_r1_b">formulas and zero-drift check for Raw - Duplicates = Clean</span>
+                  </td>
                 </tr>
                 <tr>
                   <th scope="row"><code>Temiz_Birlestirilmis</code></th>
-                  <td>Hizalanmış tarih, belge no, VKN/taraf, Net/KDV/Brüt tutar ve satır bazlı denetim durumu</td>
+                  <td data-i18n="t2_r2">Normalized dates, document IDs, tax IDs, Net/VAT/Gross amounts, and per-row audit status</td>
                 </tr>
                 <tr>
                   <th scope="row"><code>Kaynak_Dosyalar</code></th>
-                  <td>Her dosyanın algılanan kodlaması, ayırıcısı, başlık satırı ve brüt toplam katkısı</td>
+                  <td data-i18n="t2_r3">Detected encoding, delimiter, header row index, and gross total contribution per source file</td>
                 </tr>
                 <tr>
                   <th scope="row"><code>Mukerrer_ve_Uyarilar</code></th>
-                  <td>Çıkarılan mükerrerler, çakışan belgeler, bilimsel VKN bozulmaları ve formül hata hücreleri</td>
+                  <td data-i18n="t2_r4">Extracted duplicate rows, conflicting records, scientific-notation ID warnings, and formula error cells</td>
                 </tr>
               </tbody>
             </table>
@@ -351,37 +410,36 @@
 
     <section id="calisma-modeli" class="section" aria-labelledby="model-heading">
       <div class="container">
-        <h2 id="model-heading">Çalışma Modeli ve Teslim İlkeleri</h2>
-        <p class="section-intro">
-          Hazır SaaS aboneliklerinin aksine, mevcut muhasebe veya ofis Excel düzeninize birebir uyan, kontrol edilebilir yerel sistemler kurulur.
+        <h2 id="model-heading" data-i18n="model_heading">Workflow and Delivery Principles</h2>
+        <p class="section-intro" data-i18n="model_intro">
+          Unlike rigid cloud SaaS subscriptions, every utility is built to match your existing accounting layout and stays fully under your control.
         </p>
 
         <dl class="ledger-list">
           <div class="ledger-row">
-            <dt>Önce Hazırla, Sonra Göster</dt>
-            <dd>
-              Anonimleştirilmiş 3–5 örnek belge veya Excel şablonunuz üzerinden çalışan araç yerel ortamda hazırlanır.
-              Beklenen çıktıyı canlı görüp doğruladıktan sonra teslim edilir.
+            <dt data-i18n="m1_dt">Build First, Verify Live</dt>
+            <dd data-i18n="m1_dd">
+              A working tool is assembled locally against 3–5 anonymized sample files or spreadsheet templates before delivery, so expected output is verified directly.
             </dd>
           </div>
           <div class="ledger-row">
-            <dt>Tam Yerel Veri Güvenliği</dt>
-            <dd>
-              Hiçbir XML faturası, cari hesap listesi veya işletme dosyası üçüncü parti web servislerine yüklenmez;
-              tüm ayrıştırma ve doğrulama Windows masaüstünde yerel Python ikilisiyle yürür.
+            <dt data-i18n="m2_dt">Strict Local Data Privacy</dt>
+            <dd data-i18n="m2_dd">
+              No XML invoice, ledger extract, or business spreadsheet is uploaded to third-party APIs or external clouds; parsing and reconciliation run offline on local Python runtimes.
             </dd>
           </div>
           <div class="ledger-row">
-            <dt>Ofis ve Muhasebe Uyumlu Çıktı</dt>
+            <dt data-i18n="m3_dt">Accounting-Ready Output</dt>
             <dd>
-              Son kullanıcıya ham kod veya karmaşık JSON bırakılmaz; doğrudan Logo, Zirve veya şirket içi kontrol düzenine uygun,
-              formüllü ve filtreli Excel (<code>.xlsx</code>) dosyası üretilir.
+              <span data-i18n="m3_dd_a">End users never deal with raw scripts or JSON logs; output ships as formula-driven, filterable</span>
+              <code>.xlsx</code>
+              <span data-i18n="m3_dd_b">workbooks aligned with Logo, Zirve, or internal reporting layouts.</span>
             </dd>
           </div>
           <div class="ledger-row">
-            <dt>Test ve Doğrulama Disiplini</dt>
-            <dd>
-              Yayına alınan her araç birim testlerinden ve sınır durum kontrollerinden geçirilerek açık kaynak deposuyla birlikte sunulur.
+            <dt data-i18n="m4_dt">Test-Verified Delivery</dt>
+            <dd data-i18n="m4_dd">
+              Every published repository ships with unit tests covering malformed encodings, decimal rounding, and security edge cases.
             </dd>
           </div>
         </dl>
@@ -396,20 +454,20 @@
           <img src="assets/rovtal-mark.svg" alt="" width="24" height="24">
           <span>Rovtal</span>
         </div>
-        <p>Yapay zeka ajanları, yerel otomasyon sistemleri ve çevrimdışı ofis/veri araçları.</p>
+        <p data-i18n="footer_tagline">AI agents, local automation systems, and offline office data tools.</p>
       </div>
 
       <div class="footer-contact">
-        <h3>Doğrudan İletişim</h3>
+        <h3 data-i18n="footer_contact_title">Direct Contact</h3>
         <div class="contact-actions">
           <a class="email-link" href="mailto:rovtalai@gmail.com">rovtalai@gmail.com</a>
-          <button type="button" id="copy-email-btn" class="btn btn-quiet btn-small">Adresi kopyala</button>
+          <button type="button" id="copy-email-btn" class="btn btn-quiet btn-small" data-i18n="copy_email_btn">Copy address</button>
         </div>
         <p id="email-feedback" class="copy-feedback" aria-live="polite"></p>
       </div>
 
       <div class="footer-links">
-        <h3>Doğrulanmış Kanallar</h3>
+        <h3 data-i18n="footer_links_title">Verified Channels</h3>
         <ul>
           <li><a href="https://github.com/Rovtal" target="_blank" rel="noopener noreferrer">GitHub (@Rovtal)</a></li>
           <li><a href="https://www.youtube.com/@RovtalAI" target="_blank" rel="noopener noreferrer">YouTube (@RovtalAI)</a></li>
